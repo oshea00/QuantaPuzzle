@@ -1,7 +1,6 @@
 // See https://aka.ms/new-console-template for more information
 
-const int HOMEPLANET = 9;
-const int MINTRIP = 5;
+const int MINTRIP = 3;
 
 List<int> StringToDigits(string digits)
 {
@@ -13,7 +12,7 @@ List<int> StringToDigits(string digits)
 	return list;
 }
 
-void Main(string planets)
+void Main(string planets, int homeplanet)
 {
 	var exoplanets = StringToDigits(planets); 	
 	var jumps = getFirstTwo(exoplanets);
@@ -27,14 +26,42 @@ void Main(string planets)
 			hyperjumps.AddRange(FindJumps(g, exoplanets));
 		}
 		jumps = hyperjumps;
-	    FindHyperJumpsHome(jumps,exoplanets,HOMEPLANET,MINTRIP,tripsHome);
+	    FindHyperJumpsHome(jumps,exoplanets,homeplanet,MINTRIP,tripsHome);
 	}
 	
 	foreach (var k in tripsHome.Keys)
     {
-        Console.WriteLine(k);
+		if (IfHome(k,homeplanet))
+        	Console.WriteLine(k);
     }
 }
+
+bool IfHome(string path, int homeplanet)
+{
+	var digitsInPath = path.ToCharArray().Select(c => int.Parse($"{c}")).ToList();
+	int numDigits = digitsInPath.Count;
+	var a = digitsInPath[numDigits-2];
+	var b = digitsInPath[numDigits-1];
+	if (JumpsToHome(a,b,homeplanet))
+		return true;
+	return false;
+}
+
+bool JumpsToHome(int a, int b, int homeplanet)
+{
+	if (LastDigit(a + b) == homeplanet)
+		return true;
+	if (a > b)
+		if (LastDigit(a - b) == homeplanet)
+			return true;
+	if (a % b == 0)
+		if (LastDigit(a / b) == homeplanet)
+			return true;
+	if (LastDigit(a * b) == homeplanet)
+		return true;
+	return false;
+}
+
 
 void FindHyperJumpsHome(List<List<int>> jumps, List<int> exoplanets, int homeplanet, int mintrip, Dictionary<string,List<int>> trips)
 {
@@ -89,12 +116,6 @@ List<int> CalculatePlanetValues(List<int> g, List<int> exoplanets)
 
 	PlanetCalculations(a,b,links);
 	
-	if (g.Count > 2)
-	{
-		var c = exoplanets[TakeDigit(g,-3)] * 10 + a;
-		PlanetCalculations(c, b, links);
-	}
-
 	return links.Where(d=>d!=0).Distinct().ToList();
 }
 
@@ -138,7 +159,7 @@ List<List<int>> getFirstTwo(List<int> planets)
 	return pairs;
 }
 
-if (args.Length > 0)
-	Main(args[0]);
+if (args.Length > 1)
+	Main(args[0],int.Parse(args[1]));
 else
-	Main("3,4,8,4,7,8,62");
+	Main("7,8,6,1,1,6,7,7",4);
