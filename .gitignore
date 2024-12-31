@@ -4,9 +4,12 @@ project.lock.json
 .DS_Store
 *.pyc
 nupkg/
+.env
 
 # Visual Studio Code
 .vscode
+.gradio
+
 
 # Rider
 .idea
@@ -47,3 +50,6 @@ msbuild.wrn
 
 # Built Visual Studio Code Extensions
 *.vsix
+
+# Python version file
+.python-version
