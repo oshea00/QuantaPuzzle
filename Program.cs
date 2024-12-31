@@ -1,4 +1,6 @@
 ﻿// Quanta Puzzle Solver
+using System.Reflection.Metadata.Ecma335;
+
 var program = new Program();
 if (args.Length > 1)
     program.Solve(args[1]);
@@ -43,17 +45,10 @@ public partial class Program
             {
                 hyperjumps.AddRange(FindJumps(g, exoplanets));
             }
-            jumps = hyperjumps;
+            jumps=hyperjumps;
             FindHyperJumpsHome(jumps,exoplanets,homeplanet,MINTRIP,tripsHome);
         }
-
-        var trips = new List<string>();
-        foreach (var k in tripsHome.Keys)
-        {
-            trips.Add(k);
-        }
-        
-        return trips;
+        return tripsHome.Keys.ToList();
     }
     void FindHyperJumpsHome(List<List<int>> jumps, List<int> exoplanets, int homeplanet, int mintrip, Dictionary<string,List<int>> trips)
     {
