@@ -19,7 +19,7 @@ iface = gr.Interface(
     fn=puzzleRun,
     inputs=gr.Textbox(lines=1, label="planet list + home planet"),
     outputs=textbox,
-    examples=["342246428"],
+    examples=["6,2,2,4,4,4,3,2,8","7,8,6,1,1,6,7,7,4"],
     title="Quanta Puzzle Solver",
 )
 
