@@ -1,14 +1,14 @@
 ﻿// Quanta Puzzle Solver
 using System.Reflection.Metadata.Ecma335;
 
-var program = new Program();
+var program = new QuantaSolver();
 if (args.Length > 1)
     program.Solve(args[1]);
 else
     Console.WriteLine("No planets provided");
 //
 
-public partial class Program
+public class QuantaSolver
 {
     const int MINTRIP = 3;
 

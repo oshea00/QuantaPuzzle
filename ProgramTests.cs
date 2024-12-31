@@ -8,7 +8,7 @@ public class ProgramTests
     public void TestGetTripsHome()
     {
         // Arrange
-        var program = new Program();
+        var program = new QuantaSolver();
         string planets = "7,8,6,1,1,6,7,7,4"; 
     
         // Act
