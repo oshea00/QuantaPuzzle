@@ -48,40 +48,11 @@ public partial class Program
         var trips = new List<string>();
         foreach (var k in tripsHome.Keys)
         {
-            if (IfHome(k,homeplanet))
-                trips.Add(k);
+            trips.Add(k);
         }
         
         return trips;
     }
-
-    bool IfHome(string path, int homeplanet)
-    {
-        var digitsInPath = path.ToCharArray().Select(c => int.Parse($"{c}")).ToList();
-        int numDigits = digitsInPath.Count;
-        var a = digitsInPath[numDigits-2];
-        var b = digitsInPath[numDigits-1];
-        if (JumpsToHome(a,b,homeplanet))
-            return true;
-        return false;
-    }
-
-    bool JumpsToHome(int a, int b, int homeplanet)
-    {
-        if (LastDigit(a + b) == homeplanet)
-            return true;
-        if (a > b)
-            if (LastDigit(a - b) == homeplanet)
-                return true;
-        if (a % b == 0)
-            if (LastDigit(a / b) == homeplanet)
-                return true;
-        if (LastDigit(a * b) == homeplanet)
-            return true;
-        return false;
-    }
-
-
     void FindHyperJumpsHome(List<List<int>> jumps, List<int> exoplanets, int homeplanet, int mintrip, Dictionary<string,List<int>> trips)
     {
         foreach (var j in jumps)

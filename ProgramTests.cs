@@ -15,6 +15,7 @@ public class ProgramTests
         List<string> result = program.GetTripsHome(planets);
 
         // Assert
+        Assert.That(result.Count, Is.EqualTo(19));
         Assert.That(result, Is.Not.Null);
         Assert.That(result, Is.Not.Empty);
         Assert.That(result.Contains("61771786"), Is.True);
