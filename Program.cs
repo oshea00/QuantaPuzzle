@@ -129,34 +129,31 @@ public partial class Program
 
     List<int> CalculatePlanetValues(List<int> g, List<int> exoplanets)
     {
-        var links = new List<int>();
         var a = exoplanets[TakeDigit(g,-2)];
         var b = exoplanets[TakeDigit(g,-1)];
-
-        PlanetCalculations(a,b,links);
-        
-        return links.Where(d=>d!=0).Distinct().ToList();
+        return PlanetCalculations(a,b);
     }
 
     int TakeDigit(List<int> jumps, int offset)
     {
-        return jumps.Skip(jumps.Count+offset).Take(1).ToList()[0];
+        return jumps[jumps.Count+offset];
     }
 
-    void PlanetCalculations(int a, int b, List<int> links)
+    List<int> PlanetCalculations(int a, int b)
     {
+        var links = new List<int>();
         links.Add(LastDigit(a + b));
         if (a > b)
             links.Add(LastDigit(a - b));
         if (a % b == 0)
             links.Add(LastDigit(a / b));
         links.Add(LastDigit(a * b));
+        return links.Where(d=>d!=0).Distinct().ToList();
     }
 
     int LastDigit(double d)
     {
-        var str = d.ToString();
-        return int.Parse(str.Substring(str.Length-1));
+        return (int) d % 10;
     }
 
     List<List<int>> getFirstTwo(List<int> planets)
@@ -179,5 +176,3 @@ public partial class Program
     }
 
 }
-
- 
