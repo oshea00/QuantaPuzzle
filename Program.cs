@@ -1,9 +1,11 @@
-﻿
+﻿// Quanta Puzzle Solver
 var program = new Program();
 if (args.Length > 1)
     program.Solve(args[1]);
 else
     Console.WriteLine("No planets provided");
+//
+
 public partial class Program
 {
     const int MINTRIP = 3;
