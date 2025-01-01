@@ -1,3 +1,9 @@
+---
+title: QuantaPuzzle
+app_file: app.py
+sdk: gradio
+sdk_version: 5.9.1
+---
 # Quanta Puzzle Solver
 
 This project is a web-based application that solves the Quanta Puzzle. It uses Gradio to create an interactive interface where users can input a list of planets and their home planet to get the solution.
